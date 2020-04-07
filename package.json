@@ -1,0 +1,32 @@
+
+{
+    "name": "node-cli",
+    "version": "0.1.1",
+    "description": "",
+    "main": "./lib/index.js",
+    "bin": {
+        "nci": "./lib/bin/app.js"
+    },
+    "scripts": {
+        "start": "npm run dev",
+        "dev": "tsc -w",
+        "build": "tsc -p .",
+        "ex": "node ./lib/bin/app.js add -p xx"
+    },
+    "keywords": [],
+    "author": "row",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^12.7.2",
+        "nodemon": "^1.19.1",
+        "ts-node": "^8.3.0",
+        "@types/ansi-colors": "^3.2.2",
+        "@types/fs-extra": "^8.0.1",
+        "typescript": "^3.6.2"
+    },
+    "dependencies": {
+        "ansi-colors": "^4.1.1",
+        "commander": "^4.0.1",
+        "fs-extra": "^8.1.0"
+    }
+}
