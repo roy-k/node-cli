@@ -16,3 +16,5 @@ export const SLICE_PATHS = {
     ALGORITHM: path.resolve(__dirname, '../../slices/algorithm'),
     // PAGE: path.resolve(__dirname, '../slices/page'),
 }
+
+export const TEMPLATES_PATH = path.resolve(__dirname, '../../templates')

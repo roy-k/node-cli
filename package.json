@@ -10,7 +10,7 @@
         "start": "npm run dev",
         "dev": "tsc -w",
         "build": "tsc -p .",
-        "ex": "node ./lib/bin/app.js add -p xx"
+        "ex": "node ./lib/bin/app.js create"
     },
     "keywords": [],
     "author": "row",

@@ -35,32 +35,4 @@ program
         return addSlice(name, cmdObj)
     })
 
-// program
-//     .command('new [module]')
-//     .description('generator a new module')
-//     .action(function(module){
-//         gmodule(config,module)
-//     });
-
-// program
-//     .command('publish')
-//     .description('upload assets to CDN and git commit && push')
-//     .action(function(){
-//         publish(config)
-//     });
-
-// program
-//     .command('analysis')
-//     .description('analysis dist files size and percent')
-//     .action(function () {
-//         analysis(config.upload.config.srcDir);
-//     });
-
-// program
-//     .command('question')
-//     .description('analysis dist files size and percent')
-//     .action(function(){
-//         question()
-//     });
-
 program.parse(process.argv)
