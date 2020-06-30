@@ -7,7 +7,7 @@ import {SLICE_PATHS, cli_config} from '../configs/paths'
 
 export async function addSlice(name: string, cmdObj: any) {
     const cwdPath = process.cwd()
-
+    // todo 判断是否 相应的项目, 匹配才能添加
     let sourcePath = ''
     let targetPath = ''
     let dirPath = ''

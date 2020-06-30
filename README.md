@@ -3,6 +3,8 @@
 
 ## design
 
+init 相关设计
+
 ## RoadMap
 
 - [ ] 配置文件设计

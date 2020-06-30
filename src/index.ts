@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 import path from 'path'
 import fs from 'fs-extra'
+
 import {Command} from 'commander'
-import {create} from './packages/create'
+
+import {createProject} from './packages/create'
 import {addSlice} from './packages/addSlice'
 
 const program = new Command()
@@ -16,7 +18,7 @@ program
     .alias('create')
     .description('创建项目')
     .action(projectName => {
-        create(projectName)
+        createProject(projectName)
     })
 
 program

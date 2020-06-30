@@ -10,9 +10,9 @@ export const cli_config = {
 // }
 
 export const SLICE_PATHS = {
-    PAGE: path.resolve(__dirname, '../../templates/slice/page'),
-    ENUM: path.resolve(__dirname, '../../templates/slice/enum/enum.ts'),
-    FETCH: path.resolve(__dirname, '../../templates/slice/fetch/fetch.ts'),
-    ALGORITHM: path.resolve(__dirname, '../../templates/slice/algorithm'),
-    // PAGE: path.resolve(__dirname, '../templates/slice/page'),
+    PAGE: path.resolve(__dirname, '../../slices/page'),
+    ENUM: path.resolve(__dirname, '../../slices/enum/enum.ts'),
+    FETCH: path.resolve(__dirname, '../../slices/fetch/fetch.ts'),
+    ALGORITHM: path.resolve(__dirname, '../../slices/algorithm'),
+    // PAGE: path.resolve(__dirname, '../slices/page'),
 }

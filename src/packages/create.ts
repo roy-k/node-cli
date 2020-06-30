@@ -1,75 +1,48 @@
-
 import path from 'path'
 import fs from 'fs-extra'
-import { msg } from '../util/color';
-// const inquirer = require('inquirer');
- 
+import {msg} from '../util/color'
+import inquirer from 'inquirer'
+
 // 要拷贝的目标所在路径
-let templatePath;
+let templatePath
 // 目标文件夹根路径
-let targetRootPath;
- 
-export function create (projectName?:string) {
+let targetRootPath
+
+export async function createProject(projectName?: string) {
     const cwdPath = process.cwd()
 
     // 无参数时, 判断文件夹是否为空, 空则取文件夹名字作为项目名
-    if(!projectName) {
+    if (!projectName) {
         const hasFiles = fs.readdirSync(cwdPath).length > 0
 
-        if(hasFiles) {
-            msg.error('目录中包含文件...')
+        if (hasFiles) {
+            msg.error('当前目录中包含文件...')
             return
         }
-
+        return
         // 复制文件, 改名
-
-
-    } else {
-        const targetPath = path.join(cwdPath, projectName)
-        console.log(targetPath);
     }
+    // 复用思路, 创建文件夹; 然后更新下 targetPath
+    const targetPath = path.join(cwdPath, projectName)
+    console.log(targetPath)
+
+    const tplList = await getTemplates(targetPath)
+    const {template} = await choseTemplate(tplList)
+
+    console.log(template);
 }
 
-function cpTemplates (targetPath: string) {
-    
+async function getTemplates(targetPath: string) {
+    return fs.readdir(targetPath)
 }
 
-
-
-// function deleteFolderRecursive (path) {
-//     if (fs.existsSync(path)) {
-//         fs.readdirSync(path).forEach(function(file, index){
-//             var curPath = path + "/" + file;
-//             if (fs.lstatSync(curPath).isDirectory()) {
-//                 // recurse
-//                 deleteFolderRecursive(curPath);
-//             } else { // delete file
-//                 fs.unlinkSync(curPath);
-//             }
-//         });
-//         fs.rmdirSync(path);
-//     }
-// };
- 
-// function copyTemplates(name){
-//     function readAndCopyFile(parentPath,tempPath){
-//         let files = fs.readdirSync(parentPath);
- 
-//         files.forEach((file)=>{
-//             let curPath = `${parentPath}/${file}`;
-//             let stat = fs.statSync(curPath);
-//             let filePath = `${targetRootPath}/${tempPath}/${file}`;
-//             if(stat.isDirectory()){
-//                 fs.mkdirSync(filePath);
-//                 readAndCopyFile(`${parentPath}/${file}`,`${tempPath}/${file}`);
-//             }
-//             else{
-//                 const contents = fs.readFileSync(curPath,'utf8');
-//                 fs.writeFileSync(filePath,contents, 'utf8');
-//             }
- 
-//         });
-//     }
- 
-//     // readAndCopyFile(templatePath,name);
-// }
+async function choseTemplate(tplList: string[]) {
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name: 'template',
+            message: '请选择项目类型',
+            choices: tplList,
+        },
+    ])
+}
