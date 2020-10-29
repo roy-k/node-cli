@@ -4,6 +4,7 @@ import {msg} from '../util/color'
 // const inquirer = require('inquirer');
 
 import {SLICE_PATHS, cli_config} from '../configs/paths'
+import {addAlgorithm} from './core/addAlgorithm'
 
 export async function addSlice(name: string, cmdObj: any) {
     const cwdPath = process.cwd()
@@ -32,6 +33,14 @@ export async function addSlice(name: string, cmdObj: any) {
         sourcePath = SLICE_PATHS.ALGORITHM
         dirPath = path.join(cwdPath, `src`)
         targetPath = path.join(cwdPath, `src/${name}`)
+        
+        try {
+            addAlgorithm(targetPath, name)
+            msg.success('模块添加成功')
+        } catch (error) {
+            msg.error(error)
+        }
+        return
     }
 
     // 添加接口模块
@@ -75,7 +84,9 @@ async function addRoute(cwdPath: string, routeName: string) {
     try {
         const str = await fs.readFile(filePath)
         // todo 菜单 和 路由区分
-        const newStr = str.slice(0, -1) + `{
+        const newStr =
+            str.slice(0, -1) +
+            `{
             label: '${routeName}',
             route: '${routeName}',
             icon: 'default',
